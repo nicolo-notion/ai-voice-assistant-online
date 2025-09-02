@@ -118,10 +118,10 @@ PAGE = """<!doctype html>
   <h1>J.A.R.V.I.S.</h1>
   <div id="log"></div>
   <div class="controls">
-    <button id="talkBtn">🎤 Parla</button>
+    <button id="talkBtn">🎤 Parla porco dio</button>
     <input id="textInput" placeholder="Scrivi qui e premi Invio…" />
   </div>
-  <div class="hint">Suggerimenti: "ciao", "come stai", "che ore sono", "esci"</div>
+  <div class="hint">Suggerimenti: "ciao", "come stai", "che ore sono? è ora di Ironman", "esci"</div>
 </div>
 <script>
 const log = document.getElementById("log");
