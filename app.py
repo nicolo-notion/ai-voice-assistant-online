@@ -22,20 +22,100 @@ PAGE = """<!doctype html>
 <html lang="it"><head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Assistente vocale</title>
+<title>J.A.R.V.I.S.</title>
 <style>
-  body{font-family:system-ui,Arial,sans-serif;margin:0;background:#0b1020;color:#e9eefc}
-  .app{max-width:720px;margin:0 auto;padding:16px}
-  #log{background:#121935;border:1px solid #243056;border-radius:12px;padding:12px;height:55vh;overflow:auto}
-  .tu{margin:8px 0;padding:10px 12px;background:#1a2452;border-radius:10px}
-  .ai{margin:8px 0;padding:10px 12px;background:#1b3a2e;border-radius:10px}
-  .controls{display:flex;gap:8px;margin-top:12px}
-  button{padding:10px 14px;border:0;border-radius:10px;background:#5869ff;color:#fff;font-weight:600;cursor:pointer}
-  input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid #243056;background:#0f1630;color:#e9eefc}
+  :root{
+    --bg:#0d1117;          /* sfondo scuro */
+    --panel:#121826;       /* pannello chat */
+    --border:#243b55;      /* bordo freddo */
+    --text:#f5f7ff;        /* testo chiaro */
+    --muted:#cbd5e1;       /* testo secondario */
+    --iron-red:#b91c1c;    /* rosso Iron Man */
+    --iron-red-dark:#7f1212;
+    --gold:#f59e0b;        /* oro */
+    --arc:#22d3ee;         /* arc reactor */
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--text);
+    font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    background:
+      radial-gradient(900px 500px at 70% -10%, rgba(34,211,238,.12), transparent 60%),
+      linear-gradient(180deg, #0b0f16 0%, #0d1117 100%);
+  }
+
+  .app{max-width:900px;margin:0 auto;padding:16px}
+  h1{margin:10px 0 14px;font-size:22px;font-weight:700;letter-spacing:.2px}
+
+  /* Contenitore chat */
+  #log{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px; height:60vh; overflow:auto;
+    box-shadow:0 10px 24px rgba(0,0,0,.35);
+  }
+
+  /* Bolle messaggi: ALTISSIMO CONTRASTO */
+  .tu,.ai{
+    margin:10px 0; padding:12px 14px;
+    border-radius:12px; line-height:1.5; font-size:16px;
+    word-wrap:break-word;
+  }
+  .tu{
+    background:linear-gradient(135deg, var(--iron-red), var(--iron-red-dark));
+    color:#ffffff;
+    border:1px solid rgba(245,158,11,.55); /* bordo oro */
+    box-shadow:0 4px 10px rgba(185,28,28,.30);
+  }
+  .ai{
+    background:linear-gradient(135deg, #0c2b3d, #123a53);
+    color:#e6fbff;
+    border:1px solid rgba(34,211,238,.55); /* bordo arc */
+    box-shadow:0 4px 12px rgba(34,211,238,.22);
+  }
+
+  /* Controlli in basso */
+  .controls{display:flex;gap:10px;margin-top:12px}
+  input{
+    flex:1; padding:12px 14px; border-radius:10px;
+    border:1px solid var(--border);
+    background:#0f1629; color:var(--text);
+    outline:none; transition:border .15s, box-shadow .15s;
+  }
+  input::placeholder{color:#94a3b8}
+  input:focus{
+    border-color:rgba(34,211,238,.7);
+    box-shadow:0 0 0 3px rgba(34,211,238,.18);
+  }
+
+  button{
+    padding:12px 16px; border:0; border-radius:10px; cursor:pointer;
+    color:#fff; font-weight:800; letter-spacing:.2px;
+    background:linear-gradient(135deg, var(--iron-red), var(--iron-red-dark));
+    border:1px solid rgba(245,158,11,.6);
+    box-shadow:0 6px 14px rgba(185,28,28,.35), inset 0 0 10px rgba(245,158,11,.18);
+    transition:transform .08s ease, filter .15s ease, box-shadow .15s ease;
+  }
+  button:hover{transform:translateY(-1px);filter:brightness(1.05)}
+  button:active{transform:translateY(0);filter:brightness(.98)}
+
+  /* Pulsante microfono con glow controllato */
+  #talkBtn{
+    box-shadow:
+      0 0 18px rgba(34,211,238,.28),
+      0 0 36px rgba(34,211,238,.18),
+      inset 0 0 10px rgba(245,158,11,.22);
+  }
+
+  .hint{font-size:12px;opacity:.85;margin-top:8px;color:var(--muted)}
 </style>
 </head><body>
 <div class="app">
-  <h1>Assistente vocale</h1>
+  <h1>J.A.R.V.I.S.</h1>
   <div id="log"></div>
   <div class="controls">
     <button id="talkBtn">🎤 Parla</button>
