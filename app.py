@@ -42,9 +42,14 @@ PAGE = """<!doctype html>
     font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     font-size:16px; line-height:1.55;
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-    background:
-      radial-gradient(900px 500px at 70% -10%, rgba(34,211,238,.12), transparent 60%),
-      linear-gradient(180deg, #0b0f16 0%, #0d1117 100%);
+  background:
+    /* velo scuro per leggibilità del testo */
+    linear-gradient(rgba(0,0,0,.50), rgba(0,0,0,.50)),
+    /* la tua immagine (cache buster v=1) */
+    url('/static/bg.jpg?v=1') center / cover no-repeat,
+    /* i TUOI gradienti originali sotto all'immagine */
+    radial-gradient(900px 500px at 70% -10%, rgba(34,211,238,.12), transparent 60%),
+    linear-gradient(180deg, #0b0f16 0%, #0d1117 100%);
   }
 
   .app{max-width:900px;margin:0 auto;padding:16px}
