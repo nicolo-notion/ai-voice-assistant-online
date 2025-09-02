@@ -44,7 +44,7 @@ PAGE = """<!doctype html>
     -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   background:
     /* velo scuro per leggibilità del testo */
-    linear-gradient(rgba(0,0,0,.50), rgba(0,0,0,.50)),
+    linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.68)),
     /* la tua immagine (cache buster v=1) */
     url('/static/bg.jpg?v=1') center / cover no-repeat,
     /* i TUOI gradienti originali sotto all'immagine */
@@ -53,7 +53,14 @@ PAGE = """<!doctype html>
   }
 
   .app{max-width:900px;margin:0 auto;padding:16px}
-  h1{margin:10px 0 14px;font-size:22px;font-weight:700;letter-spacing:.2px}
+ h1{
+  margin:10px 0 14px;
+  font-size: clamp(26px, 3.2vw, 34px); /* grande ma responsive */
+  font-weight: 800;
+  letter-spacing: .3px;
+  line-height: 1.2;
+  text-shadow: 0 2px 6px rgba(0,0,0,.35); /* leggero alone per leggibilità */
+}
 
   /* Contenitore chat */
   #log{
